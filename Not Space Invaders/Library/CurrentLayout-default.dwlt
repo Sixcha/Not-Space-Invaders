@@ -102,7 +102,11 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 98
+=======
+  controlID: 74
+>>>>>>> b06b8e9986170e6ef0a8a11c89acf8cf5174d719
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
