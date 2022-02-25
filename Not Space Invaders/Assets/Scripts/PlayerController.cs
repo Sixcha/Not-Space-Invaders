@@ -5,35 +5,40 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 10f;
-    private Rigidbody2D rb;
+    public float xRange = 6.3f;
+    public float yRange = 4.7f;
+
     private Vector2 movement;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
+        PlayerMovement();
+    }
+
+    void PlayerMovement()
+    {
+        // To keep player in the boundaries demanded by values at the top
+        if(transform.position.x < -xRange)
+            transform.position = new Vector2(-xRange, transform.position.y);
+        if(transform.position.x > xRange)
+            transform.position = new Vector2(xRange, transform.position.y);
+        if(transform.position.y < -yRange)
+            transform.position = new Vector2(transform.position.x, -yRange);
+        if(transform.position.y > yRange)
+            transform.position = new Vector2(transform.position.x, yRange);
+
         float xInput = Input.GetAxisRaw("Horizontal");
-        Debug.Log(xInput);
         float yInput = Input.GetAxisRaw("Vertical");
-        Debug.Log(yInput);
-        movement = new Vector2 (xInput, yInput);
+        Debug.Log($"x:{xInput}, y:{yInput}");
 
-        MovementWithTranslate(movement);
-    }
-
-    void FixedUpdate()
-    {
-
-    }
-
-    // It overrides any physics that is used on the object which means object will not clash to other objects and get effected by it.
-    void MovementWithTranslate(Vector2 direction)
-    {
-        transform.Translate(direction * Time.deltaTime * speed);
+        movement = new Vector2(xInput, yInput).normalized;
+        transform.Translate(movement * Time.deltaTime * speed);
     }
 }
