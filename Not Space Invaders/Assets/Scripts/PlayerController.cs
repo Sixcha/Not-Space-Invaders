@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float Speed;
+    public float speed = 10f;
     private Rigidbody2D rb;
-    private Vector2 Direction;
+    private Vector2 movement;
 
     // Start is called before the first frame update
     void Start()
@@ -17,14 +17,40 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float directionX = Input.GetAxis("Horizontal");
-        Debug.Log(directionX);
-        float directionY = Input.GetAxis("Vertical");
-        Direction = new Vector2(directionX, directionY).normalized;
+        float xInput = Input.GetAxis("Horizontal");
+        Debug.Log(xInput);
+        float yInput = Input.GetAxis("Vertical");
+        Debug.Log(yInput);
+        movement = new Vector2 (xInput, yInput);
+
+        MovementWithTranslate(movement);
     }
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(Direction.x * Speed, Direction.y * Speed);
+        //MovementWithRigidBodyAddForce(movement);
+        //MovementWithRigidbodyMovePosition(movement);
+        //MovementWithRigidBodyVelocity(movement);
+    }
+
+    // It overrides any physics that is used on the object which means object will not clash to other objects and get effected by it.
+    void MovementWithTranslate(Vector2 direction)
+    {
+        transform.Translate(direction * Time.deltaTime * speed);
+    }
+
+    void MovementWithRigidBodyAddForce(Vector2 direction)
+    {
+        rb.AddForce(direction * speed);
+    }
+
+    void MovementWithRigidBodyVelocity(Vector2 direction)
+    {
+        rb.velocity = direction * speed;
+    }
+
+    void MovementWithRigidbodyMovePosition(Vector2 direction)
+    {
+        rb.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
     }
 }
