@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a1da314d733e048bd5b0d88435498a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yRange: 6
   projectileSpeed: 10
   maxProjectileDistance: 10
 --- !u!70 &5722600699742312128
