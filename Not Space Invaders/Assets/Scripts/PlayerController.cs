@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movement;
 
+    public int bulletLevel = 0;
+    public GameObject[] projectilePrefab = new GameObject[3];
+    private const float fireRate = 0.2f;
+    private float nextFire = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +25,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        PlayerShoot(bulletLevel);
     }
 
     void PlayerMovement()
@@ -40,5 +46,15 @@ public class PlayerController : MonoBehaviour
 
         movement = new Vector2(xInput, yInput).normalized;
         transform.Translate(movement * Time.deltaTime * speed);
+    }
+
+    void PlayerShoot(int bulletLevel)
+    {
+        if(Input.GetKey("space") && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(projectilePrefab[bulletLevel], (transform.position + new Vector3(0, 0.5f, 0)), transform.rotation);
+        }
+            
     }
 }

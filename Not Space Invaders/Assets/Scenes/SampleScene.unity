@@ -376,6 +376,11 @@ MonoBehaviour:
   speed: 8
   xRange: 6.3
   yRange: 4.7
+  bulletLevel: 0
+  projectilePrefab:
+  - {fileID: 5722600699742312131, guid: bea6e75d517fb18459a75912810afa57, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &2002335271
 SpriteRenderer:
   m_ObjectHideFlags: 0
