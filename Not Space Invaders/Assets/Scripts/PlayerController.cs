@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
-        Debug.Log($"x:{xInput}, y:{yInput}");
+        //Debug.Log($"x:{xInput}, y:{yInput}");
 
         movement = new Vector2(xInput, yInput).normalized;
         transform.Translate(movement * Time.deltaTime * speed);
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayerShoot(int bulletLevel)
     {
-        if(Input.GetKey("space") && Time.time > nextFire)
+        if(Input.GetKey("space") && Time.time > nextFire && PauseMenu.isPaused == false)
         {
             nextFire = Time.time + fireRate;
             Instantiate(projectilePrefab[bulletLevel], (transform.position + new Vector3(0, 0.5f, 0)), transform.rotation);
