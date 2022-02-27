@@ -13,24 +13,21 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField]
     private float maxProjectileDistance;
 
+    public int damage = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         firingPoint = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         MoveProjectile();
     }
 
     void MoveProjectile()
     {
-        /* if(Vector2.Distance(firingPoint, transform.position) > maxProjectileDistance)
-            Destroy(this.gameObject);
-        else
-            transform.Translate(Vector2.up * projectileSpeed * Time.deltaTime); */
         if(transform.position.y > range)
             Destroy(this.gameObject);
         else
