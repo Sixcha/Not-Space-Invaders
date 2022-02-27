@@ -24,7 +24,7 @@ public class EnemySquareSystem : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PlayerBullet")) 
         {
-            health.Damage(1);
+            health.Damage(PlayerProjectile.damage);
             Destroy(other.gameObject);
             if (health.GetHealth() <= 0)
             {
