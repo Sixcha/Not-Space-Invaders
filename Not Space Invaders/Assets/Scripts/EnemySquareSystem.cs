@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySquareSystem : MonoBehaviour
@@ -11,6 +9,11 @@ public class EnemySquareSystem : MonoBehaviour
 
     [SerializeField]
     private float speed = 2f;
+
+    private float range = -5f;
+
+    [SerializeField]
+    private int scoreValue = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,7 @@ public class EnemySquareSystem : MonoBehaviour
             Destroy(other.gameObject);
             if (health.GetHealth() <= 0)
             {
-                Destroy(gameObject);
+                Destroy(this.gameObject);
                 // Leave score increase function here
             }
         }
@@ -42,8 +45,11 @@ public class EnemySquareSystem : MonoBehaviour
     void LaunchTowardsPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector2 direction = player.transform.position - transform.position;
-        transform.Translate(direction * speed * Time.deltaTime);
+        Vector2 direction = player.transform.position;
 
+        if (transform.position.y < range)
+            Destroy(this.gameObject);
+        else
+            transform.Translate(direction * speed * Time.deltaTime);
     }
 }
