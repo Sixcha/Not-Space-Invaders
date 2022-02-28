@@ -745,6 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce40ba0dca0faf41b1f0202ddb37425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
 --- !u!50 &906402192
 Rigidbody2D:
   serializedVersion: 4
@@ -1731,7 +1732,7 @@ GameObject:
   - component: {fileID: 2002335271}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

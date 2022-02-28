@@ -13,8 +13,6 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField]
     private float maxProjectileDistance;
 
-    public static int damage = 1;
-
     // Start is called before the first frame update
     void Start()
     {
