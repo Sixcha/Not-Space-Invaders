@@ -8,7 +8,6 @@ public class Score : MonoBehaviour
     //public GameObject player;
     public TextMeshProUGUI scoreText;
     public static int score = 0;
-    float scoreTime = 0f;
     float lastUpdate = 0f;
 
     void Start()
