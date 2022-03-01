@@ -23,10 +23,10 @@ public class HighScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(oldHiScore < Score.realScore)
+        if(oldHiScore < Score.score)
         {
-            PlayerPrefs.SetInt("highscore",Score.realScore);
-            hiScoreString = Score.scoreString;
+            PlayerPrefs.SetInt("highscore",Score.score);
+            hiScoreString = Score.score.ToString();
             hiScoreText.text = $"Highscore : {hiScoreString}";
         }
     }

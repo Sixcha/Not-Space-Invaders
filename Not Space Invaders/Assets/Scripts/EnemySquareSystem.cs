@@ -37,6 +37,7 @@ public class EnemySquareSystem : MonoBehaviour
             {
                 Destroy(this.gameObject);
                 // Leave score increase function here
+                Score.UpdateScore(scoreValue);
             }
         }
 
