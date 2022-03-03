@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IHealth
 {
-    private int Health { get; set; }
+    public int Health { get; set; }
 
     private int ScoreValue { get; set; }
-    
 
     [SerializeField]
     protected float speed;
