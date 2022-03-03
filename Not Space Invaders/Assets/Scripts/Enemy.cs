@@ -2,42 +2,47 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IHealth
 {
-    [SerializeField]
-    protected int hp;
+    private int Health { get; set; }
+
+    private int ScoreValue { get; set; }
+    
 
     [SerializeField]
     protected float speed;
 
     protected static float range = -5f;
 
-    [SerializeField]
-    protected int scoreValue;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Health = Health;
     }
 
     // Update is called once per frame
     void Update()
     {
-            if (transform.position.y < range)
+        LaunchTowardsPlayer();
+        if (transform.position.y < range)
             Destroy(this.gameObject);
+    }
+
+    public void TakeDamage(int damageAmount = 1)
+    {
+        Health -= damageAmount;
+        if (Health < 0)
+        {
+            Destroy(this.gameObject);
+            Score.UpdateScore(ScoreValue);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("PlayerBullet")) 
         {
-            health.Damage(1);
-            Destroy(other.gameObject);
-            if (health.GetHealth() <= 0)
-            {
-                Destroy(this.gameObject);
-                // Leave score increase function here
-                Score.UpdateScore(scoreValue);
-            }
+            TakeDamage();
         }
 
     }
