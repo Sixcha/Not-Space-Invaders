@@ -32,4 +32,12 @@ public class PlayerProjectile : MonoBehaviour
             transform.Translate(Vector2.up * projectileSpeed * Time.deltaTime);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy")) 
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
 }

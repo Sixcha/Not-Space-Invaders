@@ -5,7 +5,7 @@ public class EnemySquareSystem : Enemy
     public EnemySquareSystem()
     {
         this.health = 2;
-        this.speed = 1f;
+        this.speed = 0f;
         this.scoreValue = 200;
     }
  
