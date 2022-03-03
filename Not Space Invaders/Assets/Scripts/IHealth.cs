@@ -1,6 +1,6 @@
 public interface IHealth
 {
-    int Health { get; set; }
+    int health { get; set; }
 
     void TakeDamage(int damageAmount = 1);
 }

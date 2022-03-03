@@ -31,4 +31,5 @@ public class PlayerProjectile : MonoBehaviour
         else
             transform.Translate(Vector2.up * projectileSpeed * Time.deltaTime);
     }
+
 }

@@ -2,24 +2,34 @@ using UnityEngine;
 
 public class EnemySquareSystem : Enemy
 {
-    [SerializeField]
-    
-
-    [SerializeField]
-    private float speed = 2f;
-
-    [SerializeField]
+    public EnemySquareSystem()
+    {
+        this.health = 2;
+        this.speed = 1f;
+        this.scoreValue = 200;
+    }
  
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        LaunchTowardsPlayer();
+        if (this.gameObject.transform.position.y < range)
+            Destroy(this.gameObject); 
+    }
+
+    void LaunchTowardsPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector2 direction = player.transform.position;
+
+        transform.Translate(direction * speed * Time.deltaTime);
 
     }
 }
