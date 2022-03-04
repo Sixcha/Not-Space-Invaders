@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 8f;
     public float xRange = 6.3f;
     public float yRange = 4.7f;
 
@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public int bulletLevel = 0;
     public GameObject[] projectilePrefab = new GameObject[3];
-    private const float fireRate = 0.2f;
+    private const float fireRate = 0.15f;
     private float nextFire = 0.0f;
 
     // Start is called before the first frame update

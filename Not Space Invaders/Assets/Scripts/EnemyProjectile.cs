@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     private Vector2 firingPoint;
-    public float range = 5f;
+    public float range = -5f;
 
     [SerializeField]
     private float projectileSpeed;
@@ -23,7 +23,7 @@ public class PlayerProjectile : MonoBehaviour
 
     void MoveProjectile()
     {
-        if(transform.position.y > range)
+        if(transform.position.y < range)
             Destroy(this.gameObject);
         else
             transform.Translate(Vector2.up * projectileSpeed * Time.deltaTime);
@@ -31,9 +31,9 @@ public class PlayerProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Enemy")) 
+        if(other.gameObject.CompareTag("Player")) 
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
     }
