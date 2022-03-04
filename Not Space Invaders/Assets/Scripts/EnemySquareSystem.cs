@@ -5,7 +5,7 @@ public class EnemySquareSystem : Enemy
     public EnemySquareSystem()
     {
         this.health = 2;
-        this.speed = 0f;
+        this.speed = 1f;
         this.scoreValue = 200;
     }
  
@@ -27,9 +27,19 @@ public class EnemySquareSystem : Enemy
     void LaunchTowardsPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector2 direction = player.transform.position;
+        Transform playerPosition = player.transform;
 
-        transform.Translate(direction * speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, playerPosition.position) > 0.5f)
+        {
+            // Chase on x-axis
+            if (transform.position.y > playerPosition.position.y)
+            {
+                Vector2 xTarget = new Vector2(playerPosition.position.x, transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, xTarget, speed * Time.deltaTime);
+            }
 
+            // Move down on y-axis
+            transform.position += speed * Time.deltaTime * Vector3.down;
+        }
     }
 }

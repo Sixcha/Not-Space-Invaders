@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour, IHealth
 
     protected int scoreValue { get; set; }
 
+    [SerializeField]
     protected float speed { get; set; }
 
     protected static float range = -5f;
