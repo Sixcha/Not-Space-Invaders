@@ -23,7 +23,10 @@ public class Score : MonoBehaviour
 
     public static void UpdateScore(int scoreToAdd)
     {
-        score += scoreToAdd;
+        if(PlayerController.isAlive == true)
+        {
+            score += scoreToAdd;
+        }
     }
 
     private void PresentScore(int score)

@@ -26,20 +26,23 @@ public class EnemySquareSystem : Enemy
 
     void LaunchTowardsPlayer()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Transform playerPosition = player.transform;
-
-        if (Vector2.Distance(transform.position, playerPosition.position) > 0.5f)
+        if(PlayerController.isAlive == true)
         {
-            // Chase on x-axis
-            if (transform.position.y > playerPosition.position.y)
-            {
-                Vector2 xTarget = new Vector2(playerPosition.position.x, transform.position.y);
-                transform.position = Vector2.MoveTowards(transform.position, xTarget, speed * Time.deltaTime);
-            }
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            Transform playerPosition = player.transform;
 
-            // Move down on y-axis
-            transform.position += speed * Time.deltaTime * Vector3.down;
+            if (Vector2.Distance(transform.position, playerPosition.position) > 0.5f)
+            {
+                // Chase on x-axis
+                if (transform.position.y > playerPosition.position.y)
+                {
+                    Vector2 xTarget = new Vector2(playerPosition.position.x, transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, xTarget, speed * Time.deltaTime);
+                }
+
+                // Move down on y-axis
+                transform.position += speed * Time.deltaTime * Vector3.down;
+            }
         }
     }
 }

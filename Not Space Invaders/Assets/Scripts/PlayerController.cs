@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private const float fireRate = 0.15f;
     private float nextFire = 0.0f;
 
+    public static bool isAlive = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,5 +58,15 @@ public class PlayerController : MonoBehaviour
             Instantiate(projectilePrefab[bulletLevel], (transform.position + new Vector3(0, 0.5f, 0)), transform.rotation);
         }
             
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnemyBullet")) 
+        {
+            Destroy(this.gameObject);
+            isAlive = false;
+        }
+
     }
 }
