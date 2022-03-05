@@ -4,12 +4,12 @@ public class EnemyTriangleSystem : Enemy
 {
     public EnemyTriangleSystem()
     {
-        this.health = 3;
+        this.health = GameOptions.difficulty;
         this.speed = 1f;
-        this.scoreValue = 300;
+        this.scoreValue = 100*GameOptions.difficulty;
     }
     
-    private float fireRate = 0.8f;
+    private float fireRate = 1.1f-(0.2f*(float)GameOptions.difficulty);
     private float nextFire = 0.0f;
     private Renderer rend;
 
@@ -21,6 +21,7 @@ public class EnemyTriangleSystem : Enemy
     void Start()
     {
         rend = GetComponent<Renderer>();
+        
     }
 
     // Update is called once per frame

@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
- 
+
     }
 
     // Update is called once per frame
@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
 
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
-        //Debug.Log($"x:{xInput}, y:{yInput}");
 
         movement = new Vector2(xInput, yInput).normalized;
         transform.Translate(movement * Time.deltaTime * speed);

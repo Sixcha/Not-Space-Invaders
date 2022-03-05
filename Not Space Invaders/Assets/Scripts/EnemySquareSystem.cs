@@ -4,9 +4,9 @@ public class EnemySquareSystem : Enemy
 {
     public EnemySquareSystem()
     {
-        this.health = 2;
-        this.speed = 1f;
-        this.scoreValue = 200;
+        this.health = GameOptions.difficulty+1;
+        this.speed = (float)GameOptions.difficulty+1f;
+        this.scoreValue = GameOptions.difficulty*100;
     }
  
 

@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        UpdateScore(0);
+        SetScore(0);
     }
 
     // Update is called once per frame
@@ -19,6 +19,11 @@ public class Score : MonoBehaviour
     {
         TimeScore();
         PresentScore(score);
+    }
+
+    public static void SetScore(int scoreToSet)
+    {
+        score = scoreToSet;
     }
 
     public static void UpdateScore(int scoreToAdd)
