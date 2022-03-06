@@ -11,7 +11,7 @@ public class EnemyBallSystem : Enemy
 
     public EnemyBallSystem()
     {
-        this.health = GameOptions.difficulty + 1;
+        this.health = GameOptions.difficulty;
         this.speed = (float)GameOptions.difficulty + 2f;
         this.scoreValue = GameOptions.difficulty * 100;
     }
@@ -54,8 +54,11 @@ public class EnemyBallSystem : Enemy
 
     private void OnDisable()
     {
-        float difficulty = GameOptions.difficulty;
-        for (int i = 0; i < 4 * (Mathf.Pow(difficulty, 2) - 2 * difficulty + 3); i++)
+        if (PlayerController.isAlive == true)
+        {
+            float difficulty = GameOptions.difficulty;
+            for (int i = 0; i < 4 * (Mathf.Pow(difficulty, 2) - 2 * difficulty + 3); i++)
             Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * (60 - 15 * difficulty)));
+        }
     }
 }

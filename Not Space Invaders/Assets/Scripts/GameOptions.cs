@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameOptions : MonoBehaviour
 {
+
+    //#TODO difficulty doesn't work properly when skipping main menu
     public static int difficulty;
 
     void Start()
