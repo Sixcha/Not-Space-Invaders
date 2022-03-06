@@ -7,6 +7,8 @@ public class EnemyBallSystem : Enemy
 
     public GameObject projectilePrefab;
 
+    
+
     public EnemyBallSystem()
     {
         this.health = GameOptions.difficulty + 1;
@@ -52,9 +54,31 @@ public class EnemyBallSystem : Enemy
 
     private void OnDisable()
     {
-        for (int i = 0; i <= 9; i++)
+        int difficulty = GameOptions.difficulty;
+        
+        if (difficulty == 1)
         {
-            Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * 45));
+            for (int i = 0; i < 8; i++)
+            {
+                Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * 45));
+            }
         }
+
+        else if (difficulty == 2)
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * 30));
+            }
+        }
+
+        else if (difficulty == 3)
+        {
+            for (int i = 0; i < 24; i++)
+            {
+                Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * 15));
+            }
+        }
+
     }
 }
