@@ -7,7 +7,7 @@ public class EnemyBallSystem : Enemy
 
     public GameObject projectilePrefab;
 
-    
+
 
     public EnemyBallSystem()
     {
@@ -54,31 +54,8 @@ public class EnemyBallSystem : Enemy
 
     private void OnDisable()
     {
-        int difficulty = GameOptions.difficulty;
-        
-        if (difficulty == 1)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * 45));
-            }
-        }
-
-        else if (difficulty == 2)
-        {
-            for (int i = 0; i < 12; i++)
-            {
-                Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * 30));
-            }
-        }
-
-        else if (difficulty == 3)
-        {
-            for (int i = 0; i < 24; i++)
-            {
-                Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * 15));
-            }
-        }
-
+        float difficulty = GameOptions.difficulty;
+        for (int i = 0; i < 4 * (Mathf.Pow(difficulty, 2) - 2 * difficulty + 3); i++)
+            Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * (60 - 15 * difficulty)));
     }
 }
