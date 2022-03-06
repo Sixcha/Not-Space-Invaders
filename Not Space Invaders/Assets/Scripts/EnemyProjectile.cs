@@ -6,6 +6,7 @@ public class EnemyProjectile : MonoBehaviour
 {
     private Vector2 firingPoint;
     public float range = -5f;
+    public float xRange = 10f;
 
     [SerializeField]
     private float projectileSpeed = 0.5f+(float)GameOptions.difficulty*0.1f;
@@ -23,7 +24,7 @@ public class EnemyProjectile : MonoBehaviour
 
     void MoveProjectile()
     {
-        if(transform.position.y < range)
+        if(transform.position.y < range || Mathf.Abs(transform.position.x) > xRange)
             Destroy(this.gameObject);
         else
             transform.Translate(Vector2.up * projectileSpeed * Time.deltaTime);
