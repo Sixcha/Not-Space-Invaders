@@ -12,7 +12,7 @@ public class EnemyBallSystem : Enemy
     public EnemyBallSystem()
     {
         this.health = GameOptions.difficulty;
-        this.speed = (float)GameOptions.difficulty + 2f;
+        this.speed = (float)GameOptions.difficulty + 1f;
         this.scoreValue = GameOptions.difficulty * 100;
     }
     // Start is called before the first frame update
@@ -43,7 +43,7 @@ public class EnemyBallSystem : Enemy
                 {
                     //Vector2 xTarget = new Vector2(playerPosition.position.x/2, transform.position.y);
                     //transform.position = Vector2.MoveTowards(transform.position, xTarget, speed * Time.deltaTime);
-                    transform.position = new Vector2(Mathf.Sin(speed * Time.time) * distanceLeftRight, transform.position.y);
+                    transform.position = new Vector2(Mathf.Sin(speed*0.8f * Time.time) * distanceLeftRight, transform.position.y);
                 }
 
                 // Move down on y-axis
