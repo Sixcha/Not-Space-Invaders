@@ -7,14 +7,15 @@ public class EnemyBallSystem : Enemy
 
     public GameObject projectilePrefab;
 
-
+    float difficulty = GameOptions.difficulty;
 
     public EnemyBallSystem()
     {
-        this.health = GameOptions.difficulty;
-        this.speed = (float)GameOptions.difficulty + 1f;
-        this.scoreValue = GameOptions.difficulty * 100;
+        health = (int)difficulty;
+        speed = difficulty + 1f;
+        scoreValue = (int)difficulty * 100;
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,7 @@ public class EnemyBallSystem : Enemy
     void Update()
     {
         LaunchTowardsPlayerSin();
-        if (this.gameObject.transform.position.y < range)
-            Destroy(this.gameObject);
+        DestroyOutOfReach();
     }
 
     void LaunchTowardsPlayerSin()
@@ -41,8 +41,6 @@ public class EnemyBallSystem : Enemy
                 // Chase on x-axis
                 if (transform.position.y > playerPosition.position.y)
                 {
-                    //Vector2 xTarget = new Vector2(playerPosition.position.x/2, transform.position.y);
-                    //transform.position = Vector2.MoveTowards(transform.position, xTarget, speed * Time.deltaTime);
                     transform.position = new Vector2(Mathf.Sin(speed*0.8f * Time.time) * distanceLeftRight, transform.position.y);
                 }
 
@@ -52,11 +50,16 @@ public class EnemyBallSystem : Enemy
         }
     }
 
+    void DestroyOutOfReach()
+    {
+        if (this.gameObject.transform.position.y < range)
+            Destroy(this.gameObject);
+    }
+
     private void OnDisable()
     {
         if (PlayerController.isAlive == true)
         {
-            float difficulty = GameOptions.difficulty;
             for (int i = 0; i < 4 * (Mathf.Pow(difficulty, 2) - 2 * difficulty + 3); i++)
             Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, i * (60 - 15 * difficulty)));
         }
