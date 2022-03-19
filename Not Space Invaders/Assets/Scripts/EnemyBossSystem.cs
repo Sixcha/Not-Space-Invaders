@@ -10,17 +10,72 @@ public class EnemyBossSystem : Enemy
     }
 
     bool isInvulnerable = true;
-    int protectors = GameOptions.difficulty+1;
+    int protectors = GameOptions.difficulty*2;
+
+    bool attackIsFinished = true;
+
+    private float attackRate = 3f-(0.5f*(float)GameOptions.difficulty);
+    private float nextAttack = 0.0f;
+
+    private int previousAttack;
+    private int attackToUse;
  
     void Start()
     {
-        
+        int aliveProtectors = protectors;
+        nextAttack = Time.time + attackRate;
     }
 
     void Update()
     {
+        InitiateAttack();
+    }
+
+    void InitiateAttack()
+    {
+        if(!attackIsFinished)
+        {
+            if(Time.time > nextAttack && PauseMenu.isPaused == false)
+            {
+                nextAttack = Time.time + attackRate;
+                int attackCheck = Random.Range(1,3);
+
+                if (attackCheck == previousAttack)
+                {
+                    attackToUse = Random.Range(1,3);
+                }
+
+                else
+                {
+                    attackToUse = attackCheck;
+                }
+
+                previousAttack = attackToUse;
+                UseAttack(attackToUse);
+            }
+            
+        }
 
     }
+
+    void UseAttack(int attackNumber)
+    {
+        switch (attackNumber)
+        {
+            case 1:
+            break;
+
+            case 2:
+            break;
+
+            case 3:
+            break;
+
+            default:
+            break;
+        }
+    }
+
 
     void LaunchTowardsPlayer()
     {

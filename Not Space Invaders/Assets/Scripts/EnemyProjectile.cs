@@ -8,8 +8,10 @@ public class EnemyProjectile : MonoBehaviour
     public float range = -5f;
     public float xRange = 10f;
 
-    [SerializeField]
-    private float projectileSpeed = 0.5f+(float)GameOptions.difficulty*0.1f;
+
+    private float projectileSpeed = 5.5f+(float)GameOptions.difficulty*0.2f;
+
+    private float ballProjectileSpeed = 3f+(float)GameOptions.difficulty*0.1f;
 
     // Start is called before the first frame update
     void Start()
