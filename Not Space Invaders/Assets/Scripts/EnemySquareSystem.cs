@@ -13,20 +13,25 @@ public class EnemySquareSystem : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+   
     }
 
     // Update is called once per frame
     void Update()
     {
-        LaunchTowardsPlayer();
+        MoveDownwards();
         if (this.gameObject.transform.position.y < range)
             Destroy(this.gameObject); 
     }
 
+    void MoveDownwards()
+    {
+        transform.position += speed * Time.deltaTime * Vector3.down;
+    }
+
     void LaunchTowardsPlayer()
     {
-        if(PlayerController.isAlive == true)
+        if(PlayerController.isAlive)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             Transform playerPosition = player.transform;
