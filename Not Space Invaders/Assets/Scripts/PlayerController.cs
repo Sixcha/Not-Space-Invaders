@@ -17,10 +17,20 @@ public class PlayerController : MonoBehaviour
 
     public static bool isAlive = true;
 
+    // Shoot Audio
+    [SerializeField]
+    private AudioSource _shootAudioSource;
+
+    // Death Audio
+    [SerializeField]
+    private AudioSource _destroyedAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioSource[] Audios = GetComponents<AudioSource>(); // Audio does not work needs fix later
+        _shootAudioSource = Audios[0];
+        _destroyedAudioSource = Audios[1];
     }
 
     // Update is called once per frame
@@ -55,6 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
             Instantiate(projectilePrefab[bulletLevel], (transform.position + new Vector3(0, 0.5f, 0)), transform.rotation);
+            _shootAudioSource.Play();
         }
             
     }
@@ -67,5 +78,10 @@ public class PlayerController : MonoBehaviour
             isAlive = false;
         }
 
+    }
+
+    void OnDestroy()
+    {
+        _destroyedAudioSource.Play();
     }
 }
