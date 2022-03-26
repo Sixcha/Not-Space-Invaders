@@ -18,15 +18,22 @@ public class PlayerProjectile : MonoBehaviour
 
     private void FixedUpdate()
     {
+        DestroyOutOfReach();
         MoveProjectile();
     }
 
     void MoveProjectile()
     {
-        if(transform.position.y > range)
+        if (!PlayerController.isAlive)
+            return;
+
+        transform.Translate(Vector2.up * projectileSpeed * Time.deltaTime); 
+    }
+
+    void DestroyOutOfReach()
+    {
+        if (transform.position.y > range)
             Destroy(this.gameObject);
-        else
-            transform.Translate(Vector2.up * projectileSpeed * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -37,4 +44,5 @@ public class PlayerProjectile : MonoBehaviour
         }
 
     }
+
 }
