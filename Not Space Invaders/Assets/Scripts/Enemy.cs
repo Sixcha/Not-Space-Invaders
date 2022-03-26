@@ -10,25 +10,19 @@ public class Enemy : MonoBehaviour, IHealth
 
     protected static float range = -5f;
 
-
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
+ 
     }
 
     public void TakeDamage(int damageAmount = 1)
     {
+        SoundSystem.SetDamageSignal();
         health -= damageAmount;
         if (health <= 0)
         {
+            SoundSystem.SetDestroySignal();
             Destroy(this.gameObject);
             Score.UpdateScore(scoreValue);
         }
@@ -40,8 +34,5 @@ public class Enemy : MonoBehaviour, IHealth
         {
             TakeDamage();
         }
-
     }
-
-
 }
