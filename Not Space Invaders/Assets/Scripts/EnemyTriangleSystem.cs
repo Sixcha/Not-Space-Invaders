@@ -61,6 +61,9 @@ public class EnemyTriangleSystem : Enemy
 
     void MoveIfNotFiring()
     {
+        if (!PlayerController.isAlive)
+            return;
+
         if (canMove)
             transform.position += speed * Time.deltaTime * Vector3.down;
     }

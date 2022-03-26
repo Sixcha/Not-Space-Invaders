@@ -31,22 +31,25 @@ public class EnemyBallSystem : Enemy
 
     void LaunchTowardsPlayerSin()
     {
-        if (PlayerController.isAlive == true)
+        if (!PlayerController.isAlive)
+            return;
+
+        if (PauseMenu.isPaused)
+            return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Transform playerPosition = player.transform;
+
+        if (Vector2.Distance(transform.position, playerPosition.position) > 0.5f)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            Transform playerPosition = player.transform;
-
-            if (Vector2.Distance(transform.position, playerPosition.position) > 0.5f)
+            // Chase on x-axis
+            if (transform.position.y > playerPosition.position.y)
             {
-                // Chase on x-axis
-                if (transform.position.y > playerPosition.position.y)
-                {
-                    transform.position = new Vector2(Mathf.Sin(speed*0.8f * Time.time) * distanceLeftRight, transform.position.y);
-                }
-
-                // Move down on y-axis
-                transform.position += speed * Time.deltaTime * Vector3.down;
+                transform.position = new Vector2(Mathf.Sin(speed*0.8f * Time.time) * distanceLeftRight, transform.position.y);
             }
+
+            // Move down on y-axis
+            transform.position += speed * Time.deltaTime * Vector3.down;
         }
     }
 

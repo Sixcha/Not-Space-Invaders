@@ -20,6 +20,14 @@ public class RepeatBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MoveBackground();
+    }
+
+    void MoveBackground()
+    {
+        if (!PlayerController.isAlive)
+            return;
+
         // Change the location of the object to (0, 1 * time * speed)
         transform.Translate(Vector2.down * Time.deltaTime * speed);
 
