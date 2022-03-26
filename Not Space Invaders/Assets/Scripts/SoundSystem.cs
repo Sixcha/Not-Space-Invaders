@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SoundSystem : MonoBehaviour
 {
+    // Preparing signal buttons
     private static bool damageSignal = false;
     private static bool destroySignal = false;
     private static bool playerShootSignal = false;
 
+    // AudioSource section, when new sound is needed add here alongside with the AudioSource array below
     AudioSource damagedAudio;
     AudioSource destroyedAudio;
     AudioSource playerShoot;
@@ -29,6 +31,8 @@ public class SoundSystem : MonoBehaviour
         PlayerShootSound();
     }
 
+
+    // These are methods to play sound when true after that they set false immediately
     void PlayerShootSound()
     {
         if (playerShootSignal)
@@ -56,6 +60,8 @@ public class SoundSystem : MonoBehaviour
         }
     }
 
+
+    // These are buttons that can be activated from every other Script to create the sound
     public static void SetDamageSignal()
     {
         damageSignal = true;
